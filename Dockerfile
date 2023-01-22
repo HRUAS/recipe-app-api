@@ -1,7 +1,7 @@
 FROM python:3.9-alpine3.13
 LABEL maintainer="akhil1993"
 
-ENV PYTHONNUNBUFFERED 1
+ENV PYTHONUNBUFFERED 1
 
 COPY ./requirements.txt /tmp/requirements.txt
 COPY ./requirements.dev.txt /tmp/requirements.dev.txt
@@ -21,8 +21,7 @@ RUN python -m venv /py && \
     adduser \
         --disabled-password \
         --no-create-home \
-        django-user && \
-    chmod 775 /app
+        django-user
 
 
 ENV PATH="/py/bin:$PATH"
