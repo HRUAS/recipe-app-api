@@ -15,4 +15,4 @@ class CalcTest(SimpleTestCase):
 
         res = calc_func.sum(5, 6)
 
-        self.assertEqual(res, 11)
+        self.assertEqual(res, 12)
