@@ -21,6 +21,8 @@ services:
       - DB_PASS=changeme
     depends_on:
       - db
+    networks:
+      - net1
         
   db:
     image: postgres:13-alpine
@@ -30,8 +32,13 @@ services:
       - POSTGRES_DB=devdb
       - POSTGRES_USER=devuser
       - POSTGRES_PASSWORD=changeme
+    networks:
+      - net1
 
 
 volumes:
   dev-db-data:
+
+networks:
+  net1:
   
