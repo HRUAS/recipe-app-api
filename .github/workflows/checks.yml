@@ -16,6 +16,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Test
+<<<<<<< HEAD
         run: docker-compose down;docker-compose run --rm app sh -c "python manage.py wait_for_db"
+=======
+        run: docker-compose down;docker-compose run --rm app sh -c "python manage.py runserver 0.0.0.0:8000"
+>>>>>>> parent of ccb9e00 (added network net1 2)
       - name: Lint
         run: docker-compose down;docker-compose run --rm app sh -c "flake8"
