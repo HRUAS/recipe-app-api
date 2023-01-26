@@ -9,15 +9,15 @@ COPY ./app /app
 WORKDIR /app
 EXPOSE 8000
 
-ARG DEV=flase
+ARG DEV=false
 
 RUN python -m venv /py && \
     /py/bin/pip install --upgrade pip && \
     /py/bin/pip install -r /tmp/requirements.txt && \
-    apk add --update --no-cache postgresql-client jpeg-dev && \
+    apk add --update --no-cache postgresql-client && \
     apk add --update --no-cache --virtual .tmp-build-deps \
-        build-base postgresql-dev musl-dev zlib zlib-dev linux-headers && \
-    if [[ $DEV == "true" ]]; \
+        build-base postgresql-dev musl-dev && \
+    if [ $DEV = "true" ]; \
         then /py/bin/pip install -r /tmp/requirements.dev.txt; \
     fi && \
     rm -rf /tmp && \
@@ -28,6 +28,6 @@ RUN python -m venv /py && \
         django-user
 
 
-ENV PATH="/py/bin:/path/to/pg_config:$PATH"
+ENV PATH="/py/bin:$PATH"
 
 USER django-user
