@@ -29,6 +29,6 @@ RUN python -m venv /py && \
         django-user
 
 
-ENV PATH="/py/bin:$PATH"
+ENV PATH="/py/bin:/path/to/pg_config:$PATH"
 
 USER django-user
