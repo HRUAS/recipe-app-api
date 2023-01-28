@@ -35,7 +35,7 @@ class UserAdmin(BaseUserAdmin):
         ),
     )
     readonly_fields = ['last_login']
-    add_filedsets = (
+    add_fieldsets = (
         (
             None, {
                 'classes': (
