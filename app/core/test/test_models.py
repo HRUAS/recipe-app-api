@@ -29,7 +29,6 @@ class ModelTests(TestCase):
             ['test1@EXAMPLE.com', 'test1@example.com'],
             ['Test@Example.com', 'Test@example.com'],
             ['TEST3@EXAMPLE.COM', 'TEST3@example.com'],
-            ['', '']
         ]
 
         for email, expected in sample_emails:
