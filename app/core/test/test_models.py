@@ -26,7 +26,7 @@ class ModelTests(TestCase):
         """Test if email has been normalized"""
         print("Starting test_new_user_email_normalized")
         sample_emails = [
-            ['test1@EXAMPLE.com', 'test@example.com'],
+            ['test1@EXAMPLE.com', 'test1@example.com'],
             ['Test@Example.com', 'Test@example.com'],
             ['TEST3@EXAMPLE.COM', 'TEST3@example.com']
         ]
