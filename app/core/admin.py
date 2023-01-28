@@ -28,7 +28,7 @@ class UserAdmin(BaseUserAdmin):
         (
             _('Important dates'),
             {
-                'fileds': (
+                'fields': (
                     'last_login',
                 )
             }
