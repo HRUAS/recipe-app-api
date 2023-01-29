@@ -46,7 +46,7 @@ class PublicUserApiTests(TestCase):
         }
 
         create_user(**payload)
-        res = self.client.port(CREATE_USER_URL, payload)
+        res = self.client.post(CREATE_USER_URL, payload)
 
         self.assertEqual(res.status_code, status.HTTP_400_BAD_REQUEST)
 
