@@ -25,7 +25,7 @@ class PublicUserApiTests(TestCase):
         print("Starting test_create_user_success")
         payload = {
             'email': 'test@example.com',
-            'password': '1234',
+            'password': '12345',
             'name': 'test'
         }
 
