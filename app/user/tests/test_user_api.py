@@ -110,9 +110,9 @@ class PublicUserApiTests(TestCase):
         self.assertNotIn('token', res.data)
         self.assertEqual(res.status_code, status.HTTP_400_BAD_REQUEST)
 
-    def test_user_unautharized(self):
+    def test_retrieve_user_unautharized(self):
         """Test authentication for user"""
-        print("Starting test_user_unautharized")
+        print("Starting test_retrieve_user_unautharized")
         res = self.client.get(ME_URL)
 
         self.assertEqual(res.status_code, status.HTTP_401_UNAUTHORIZED)
