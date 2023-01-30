@@ -57,7 +57,7 @@ class PublicUserApiTests(TestCase):
         print("Starting test_password_too_short_error")
         payload = {
             'email': 'test@example.com',
-            'passwrod': 'pw',
+            'password': 'pw',
             'name': 'test'
         }
 
@@ -110,7 +110,7 @@ class PublicUserApiTests(TestCase):
         self.assertNotIn('token', res.data)
         self.assertEqual(res.status_code, status.HTTP_400_BAD_REQUEST)
 
-    def test_retrieve_user_unautharized(self):
+    def test_retrieve_user_unauthorized(self):
         """Test authentication for user"""
         print("Starting test_retrieve_user_unautharized")
         res = self.client.get(ME_URL)
@@ -121,7 +121,7 @@ class PublicUserApiTests(TestCase):
 class PrivateUserApiTests(TestCase):
     """Tests API request that require authentication"""
 
-    def setUP(self):
+    def setUp(self):
         self.user = create_user(
             email='test@example.com',
             password='testpass123',
@@ -138,7 +138,7 @@ class PrivateUserApiTests(TestCase):
         self.assertEqual(res.status_code, status.HTTP_200_OK)
         self.assertEqual(res.data, {
             'name': self.user.name,
-            'email': self.user.name,
+            'email': self.user.email,
         })
 
     def test_post_me_not_allowed(self):
@@ -146,16 +146,16 @@ class PrivateUserApiTests(TestCase):
         print("Starting test_post_me_not_allowed")
         res = self.client.post(ME_URL, {})
 
-        self.assertEqual(res.status_code, status.HTTP_405_MTHEOD_NOT_ALLOWED)
+        self.assertEqual(res.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
 
     def test_update_user_profile(self):
         """Tests Updating the user profile for the authenticated user"""
         print("Starting test_update_user_profile")
-        payload = {'name': 'updated name', 'password': 'newpassword123'}
+        payload = {'name': 'Updated name', 'password': 'newpassword123'}
 
         res = self.client.patch(ME_URL, payload)
 
         self.user.refresh_from_db()
         self.assertEqual(self.user.name, payload['name'])
-        self.assertEqual(self.user.check_password(payload['password']))
+        self.assertTrue(self.user.check_password(payload['password']))
         self.assertEqual(res.status_code, status.HTTP_200_OK)
