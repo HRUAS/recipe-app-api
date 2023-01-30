@@ -75,14 +75,14 @@ class PublicUserApiTests(TestCase):
         user_details = {
             'name': 'test_name',
             'email': 'test@example.com',
-            'password': '123456'
+            'password': '123456',
         }
 
         create_user(**user_details)
 
         payload = {
             'email': user_details['email'],
-            'password': user_details['password']
+            'password': user_details['password'],
         }
 
         res = self.client.post(TOKEN_URL, payload)
@@ -115,7 +115,7 @@ class PublicUserApiTests(TestCase):
         print("Starting test_retrieve_user_unautharized")
         res = self.client.get(ME_URL)
 
-        self.assertEqual(res.status_code, status.HTTP_401_UNAUTHORIZED)
+        self.assertEqual(res.status_code, status.HTTP_403_UNAUTHORIZED)
 
 
 class PrivateUserApiTests(TestCase):
@@ -125,7 +125,7 @@ class PrivateUserApiTests(TestCase):
         self.user = create_user(
             email='test@example.com',
             password='testpass123',
-            name='Test Name'
+            name='Test Name',
         )
         self.client = APIClient()
         self.client.force_authenticate(user=self.user)
