@@ -115,7 +115,7 @@ class PublicUserApiTests(TestCase):
         print("Starting test_retrieve_user_unautharized")
         res = self.client.get(ME_URL)
 
-        self.assertEqual(res.status_code, status.HTTP_403_UNAUTHORIZED)
+        self.assertEqual(res.status_code, status.HTTP_401_UNAUTHORIZED)
 
 
 class PrivateUserApiTests(TestCase):
