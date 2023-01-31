@@ -46,7 +46,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     USERNAME_FIELD = 'email'
 
 
-class Recipe(models.Models):
+class Recipe(models.Model):
     """Recipe Object"""
     users = models.ForeignKey(
         settings.AUTH_USER_MODEL,
