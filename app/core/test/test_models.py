@@ -63,7 +63,7 @@ class ModelTests(TestCase):
             'password'
         )
         recipe = models.Recipe.objects.create(
-            userc=user,
+            user=user,
             title='Sample recipe name',
             time_minute=5,
             price=Decimal('5.50'),
